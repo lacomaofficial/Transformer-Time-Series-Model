@@ -1,4 +1,4 @@
-##Transformer-based Time Series Model (Stock Price Prediction )
+## Transformer-based Time Series Model (Stock Price Prediction )
 
 ### Overview
 This Python code implements a transformer-based time series model to predict stock prices using historical market data. The model is trained on features derived from technical indicators such as Simple Moving Averages (SMA), Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), Bollinger Bands, Stochastic Oscillator, and combined trading signals.
