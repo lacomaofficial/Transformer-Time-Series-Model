@@ -11,21 +11,6 @@ This Python code implements a transformer-based time series model to predict sto
 - Matplotlib: For data visualization.
 - scikit-learn: For preprocessing and evaluation.
 
-### Workflow
-1. **Data Preprocessing**: Fetch historical market data using `yfinance` and preprocess the data by normalizing features using `MinMaxScaler`.
-2. **Sequence Creation**: Generate sequences of data samples with fixed sequence length using the `create_sequences` function.
-3. **Data Splitting**: Split the data into training, validation, and test sets using `train_test_split`.
-4. **Data Loading**: Convert the data into PyTorch tensors and create DataLoader objects for efficient batch processing.
-5. **Model Definition**: Define a Transformer-based time series model using the `TimeSeriesTransformer` class.
-6. **Model Training**: Train the model using the defined hyperparameters and optimization algorithm.
-7. **Hyperparameter Optimization**: Use Bayesian optimization with Gaussian processes to search for the best hyperparameters.
-8. **Final Model Evaluation**: Evaluate the final trained model on the test set and compute the test loss and R2 score.
-
-### Hyperparameter Optimization
-- The hyperparameters optimized include learning rate, number of layers, and dropout rate.
-- Bayesian optimization with Gaussian processes is used to find the best hyperparameters that minimize the negative R2 score.
-
-![image](https://github.com/lacomaofficial/Transformers/assets/132283879/73efde58-6c52-42e8-b544-1c3221c39b04)
 
 
 ### Example
