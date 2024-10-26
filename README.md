@@ -1,63 +1,73 @@
-## Transformer-based Time Series Model (Stock Price Prediction )
+# Time Series Transformer for Forecasting
 
-### Overview
-This Python code implements a transformer-based time series model to predict stock prices using historical market data. The model is trained on features derived from technical indicators such as Simple Moving Averages (SMA), Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), Bollinger Bands, Stochastic Oscillator, and combined trading signals.
+This repository contains code to train a Transformer model specifically designed for time series forecasting using IBM's `tsfm` library and Hugging Face’s `transformers`. The model is built with NVIDIA stock data as a sample, aiming to predict future stock prices based on past historical data. 
 
-### Libraries Used
-- PyTorch: For building and training neural networks.
-- NumPy: For numerical computing.
-- Pandas: For data manipulation and analysis.
-- yfinance: For fetching historical market data.
-- Matplotlib: For data visualization.
-- scikit-learn: For preprocessing and evaluation.
+## Overview
+
+This model uses **PatchTST**, a Transformer architecture optimized for time series forecasting. With a direct forecasting approach, the model leverages self-attention to learn temporal patterns and make predictions based on them.
+
+### Key Features
+- Patch extraction from historical data (context) for more efficient learning
+- Dynamic hyperparameter tuning and customization options
+- Integrated early stopping and performance tracking with `Weights & Biases`
+- Scalable data preprocessing for train, validation, and test datasets
 
 
+## Usage
 
-### Example
+### 1. Data Preparation
+The code loads stock data, splits it into training, validation, and test sets, and preprocesses it for time series modeling.
+
+   ```python
+   # Load and preprocess data
+   data = pd.read_csv("path/to/NVDA_ticker.csv", parse_dates=['Date'])
+   ```
+
+### 2. Train the Model
+Run the `trainer.train()` function to start training with pre-defined hyperparameters:
+
 ```python
-# Fetch and preprocess data
-data = pd.read_csv('nvda_tf.csv',index_col='Date')
-# Define your independent variables (features)
-features = ['SMA_Signal', 'MACD_Signal', 'RSI_Signal', 'BB_Signal',
-       'Stochastic_Signal', 'Combined_Signal', 'Volume']
-# Normalize the features
-data[features] = scaler.fit_transform(data[features])
-# Create sequences
-X, y = create_sequences(data.to_numpy(), sequence_length)
-# Split data into train, validation, and test sets
-X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=42)
-# Convert to PyTorch tensors
-X_train_tensor = torch.tensor(X_train, dtype=torch.float32)
-# Define model, criterion, and optimizer
-model = TimeSeriesTransformer(input_dim, d_model, nhead, num_layers, dropout)
-# Run Bayesian optimization
-res = gp_minimize(objective, space, n_calls=20, random_state=42)
-# Define model with best hyperparameters
-best_model = TimeSeriesTransformer(input_dim, d_model, nhead, best_num_layers, best_dropout)
-# Training loop for final model
-for epoch in range(num_epochs):
-    best_model.train()
-    train_loss = 0.0
-    for X_batch, y_batch in train_loader:
-        optimizer.zero_grad()
-        outputs = best_model(X_batch)
-        loss = criterion(outputs.squeeze(), y_batch)
-        loss.backward()
-        optimizer.step()
-        train_loss += loss.item() * X_batch.size(0)
-    train_loss /= len(train_loader.dataset)
-# Testing the final model
-best_model.eval()
-test_loss = 0.0
-test_predictions = []
-test_targets = []
-with torch.no_grad():
-    for X_test_batch, y_test_batch in test_loader:
-        test_outputs = best_model(X_test_batch)
-        test_loss += criterion(test_outputs.squeeze(), y_test_batch).item() * X_test_batch.size(0)
-        test_predictions.extend(test_outputs.squeeze().tolist())
-        test_targets.extend(y_test_batch.tolist())
-test_loss /= len(test_loader.dataset)
-test_r2 = r2_score(test_targets, test_predictions)
-print(f'Final Test Loss: {test_loss:.4f}, Test R2: {test_r2:.4f}')
+trainer = Trainer(
+    model=model.to(device),
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=valid_dataset,
+    callbacks=[early_stopping_callback]
+)
+trainer.train()
 ```
+
+### 3. Evaluate and Save the Model
+After training, the model can be evaluated and saved:
+
+```python
+results = trainer.evaluate(test_dataset)
+trainer.save_model(save_dir)
+```
+
+### 4. Visualize Metrics
+The script includes a function to visualize evaluation metrics as a bar plot:
+
+```python
+plot_evaluation_metrics(results)
+```
+
+## Configuration
+
+The main hyperparameters of the Transformer model are set in `PatchTSTConfig`, including:
+- `context_length` – History window length for each input sample
+- `patch_length` – Length of data segments used for each prediction
+- `d_model`, `num_attention_heads`, and `num_hidden_layers` for model complexity
+
+## Dependencies
+
+- Python 3.8+
+- Hugging Face `transformers`
+- IBM `tsfm` library
+- `Weights & Biases` for experiment tracking
+- Other packages listed in `requirements.txt`
+
+## Results
+
+After training, you can monitor the loss through each epoch in `Weights & Biases`, while the final MSE loss on the test set provides an overview of the model's performance.
+
