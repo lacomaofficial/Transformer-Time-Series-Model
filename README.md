@@ -4,7 +4,7 @@
 
 This repository contains two projects centered on using Transformer architectures for time series forecasting, specifically focused on stock market data. The projects utilize advanced deep learning techniques to predict future stock prices based on historical data, enhancing predictive accuracy through innovative model designs and optimization strategies.
 
-## Project 1: Univariate Time Series Transformer
+## Univariate Time Series Transformer
 
 ### Description
 
@@ -22,7 +22,7 @@ The first project implements a Transformer model designed for univariate time se
   - Trains the model with early stopping based on validation loss, ensuring robust performance on unseen data.
   - Evaluates the model's accuracy using root mean squared error (RMSE).
 
-## Project 2: Multivariate Time Series Transformer
+## Multivariate Time Series Transformer
 
 ### Description
 
