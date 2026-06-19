@@ -4,9 +4,9 @@ This repository contains a collection of experimental notebooks exploring variou
 
 Is designed for students and researchers to analyze code structures, understand architectural differences, and explore rare or novel combinations of LLMs and time series data. It is not intended for production deployment.
 
+---
 
-
-## Key Concepts Explored
+## Key Concepts
 
 By analyzing these notebooks, you will encounter:
 
