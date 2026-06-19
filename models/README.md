@@ -1,4 +1,4 @@
-# Time Series Foundation Models: Univariate & Multivariate Transformers
+# Time Series Foundation Models
 
 <br>
 
