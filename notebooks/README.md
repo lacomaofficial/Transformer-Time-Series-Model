@@ -9,7 +9,7 @@ This repository contains a collection of experimental notebooks exploring variou
 4.  **Financial Data Nuances:** Handling specific challenges like volatility, missing data, and market hours in Yahoo Finance datasets.
 5.  **Architecture Comparison:** Seeing how standard Deep Learning models stack up against emerging LLM-based approaches.
 
-Links: https://huggingface.co/blog/patchtst
+*Links: https://huggingface.co/blog/patchtst*
 
 -----------------------
 
