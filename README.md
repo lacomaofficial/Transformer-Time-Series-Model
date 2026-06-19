@@ -4,15 +4,15 @@ A collection of organized transformer architectures and experimental notebooks f
 
 <br>
 
-## 📂 Structure
+##  Structure
 
-### `models/` — Core Architectures
+### 📂`models/` — Core Architectures
 Clean, educational implementations of two distinct forecasting approaches:
 *   **Univariate Model (UVR):** Patch-based processing, RevIN normalization, and probabilistic quantile outputs.
 *   **Multivariate Model (MVR):** MuP-scaled transformer with Grouped Query Attention (GQA) and temporal/variate layers.
 
 
-### `notebooks/` — Experimental Research
+### 📂`notebooks/` — Experimental Research
 Exploratory notebooks testing various deep learning and novel LLM applications:
 *   **Baselines:** `deep-classifier-tsm.ipynb` & `trend-classifier-tsm.ipynb`
 *   **Multivariate:** `multivariate-gt.ipynb` & `multivariate-yf.ipynb` (Yahoo Finance)
