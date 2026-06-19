@@ -1,8 +1,8 @@
-# Time Series Architectures & LLM Experiments
+# Notebooks experiments
 
 This repository contains a collection of experimental notebooks exploring various approaches to time series analysis, ranging from traditional deep learning architectures to novel Large Language Model (LLM) integrations.
 
-**⚠️ Educational & Experimental Purpose:** This repository is designed for students and researchers to analyze code structures, understand architectural differences, and explore rare or novel combinations of LLMs and time series data. It is not intended for production deployment.
+Is designed for students and researchers to analyze code structures, understand architectural differences, and explore rare or novel combinations of LLMs and time series data. It is not intended for production deployment.
 
 
 
